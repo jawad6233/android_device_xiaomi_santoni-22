@@ -24,6 +24,7 @@
         <interface>
             <name>IBiometricsFingerprint</name>
             <instance>default</instance>
+        <fqname>@2.1::IBiometricsFingerprint/default</fqname>
         </interface>
     </hal>
     <hal format="hidl">
