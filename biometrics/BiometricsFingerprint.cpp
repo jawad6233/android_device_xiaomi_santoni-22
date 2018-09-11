@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#define LOG_TAG "android.hardware.biometrics.fingerprint@2.0-service"
-#define LOG_VERBOSE "android.hardware.biometrics.fingerprint@2.0-service"
+#define LOG_TAG "android.hardware.biometrics.fingerprint@2.1-service"
+#define LOG_VERBOSE "android.hardware.biometrics.fingerprint@2.1-service"
 
 #include <hardware/hw_auth_token.h>
 #include <hardware/hardware.h>
@@ -332,7 +332,6 @@ void BiometricsFingerprint::notify(const fingerprint_msg_t *msg) {
             }
             break;
         case FINGERPRINT_TEMPLATE_ENUMERATING:
-            // ignored, won't happen for 2.0 HALs
             break;
     }
 }
