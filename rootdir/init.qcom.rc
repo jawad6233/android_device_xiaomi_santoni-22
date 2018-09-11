@@ -983,17 +983,10 @@ service time_daemon /system/vendor/bin/time_daemon
     group root
     writepid /dev/cpuset/system-background/tasks
 
-service gx_fpd /system/vendor/bin/gx_fpd
-     class core
-     user root
-     group system system
-     writepid /dev/cpuset/system-background/tasks
-     disabled
-
-service fingerprint_log /system/bin/fingerprint_log
-    class late_start
+service gx_fpd /vendor/bin/gx_fpd
+    class core
     user system
-    group system sdcard_rw
+    group system drmpc
     disabled
 
 on property:persist.sys.fp.vendor=switchf
@@ -1007,12 +1000,6 @@ on property:persist.sys.fp.vendor=goodix
    setprop ro.boot.fpsensor gdx
    setprop ro.hardware.fingerprint goodix
    start fps_hal
-
-on property:persist.sys.wingtech.debug=1
-   start fingerprint_log
-
-on property:persist.sys.wingtech.debug=0
-   stop fingerprint_log
 
 service displayfeature /system/bin/displayfeature
     class main
