@@ -35,6 +35,7 @@ namespace V2_1 {
 namespace implementation {
 
 // Supported fingerprint HAL version
+static const uint16_t kVersion = HARDWARE_MODULE_API_VERSION(2, 1);
 static bool is_goodix = false;
 
 using RequestStatus =
@@ -252,6 +253,10 @@ fingerprint_device_t* BiometricsFingerprint::openHal() {
     if (0 != (err = module->common.methods->open(hw_mdl, nullptr, &device))) {
         ALOGE("Can't open fingerprint methods, error: %d", err);
         return nullptr;
+    }
+	
+    if (kVersion != device->version) {
+        ALOGE("Wrong fp version. Expected %d, got %d", kVersion, device->version);
     }
 
     fingerprint_device_t* fp_device =
